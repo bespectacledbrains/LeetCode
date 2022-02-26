@@ -1,0 +1,9 @@
+---
+# https://leetcode.com/problems/delete-duplicate-emails/
+# MySQL faster than 80.13% 
+---
+delete from person 
+where id in (select id from (select id, rank() over(partition by email order by id asc) as r 
+                      from person ) p1
+                where p1.r > 1)
+---
