@@ -1,2 +1,2 @@
 # Leetcode
-Repo to save my Leetcode solutions
+Repo to save my progress in solving LeetCode problems
