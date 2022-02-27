@@ -1,0 +1,14 @@
+---
+# https://platform.stratascratch.com/coding/9856-find-employees-with-the-same-salary
+---
+# Find employees with the same salary. Output the worker id along with the first name and the salary.
+# Table: worker
+---
+```
+select distinct a.worker_id, a.first_name, a.salary
+from worker a join worker b
+on  a.salary = b.salary
+and a.worker_id <> b.worker_id
+order by a.salary
+```
+---
