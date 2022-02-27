@@ -1,0 +1,8 @@
+# https://platform.stratascratch.com/coding/10137-find-workers-with-an-even-number-for-worker-id
+# Use mod to find remainder = 0 in order to find records with even ids
+--
+```
+select * 
+from worker
+where mod(worker_id,2) = 0;
+```
