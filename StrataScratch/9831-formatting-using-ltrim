@@ -1,0 +1,10 @@
+---
+# https://platform.stratascratch.com/coding/9831-formatting-names
+---
+# Print the first name after removing white spaces from the left side.
+---
+```
+select ltrim(first_name)
+from worker;
+```
+---
