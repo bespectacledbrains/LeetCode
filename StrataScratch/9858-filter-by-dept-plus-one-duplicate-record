@@ -1,0 +1,17 @@
+---
+# https://platform.stratascratch.com/coding/9858-find-employees-in-the-hr-department-and-output-the-result-with-one-duplicate/
+---
+# simple where clause filter 
+# plus use of set clause UNION ALL to get one more record from same dataset as a duplicate record 
+---
+```
+select first_name, department 
+from worker
+where department like 'HR'
+union all
+(select first_name, department
+from worker
+where department like 'HR'
+limit 1);
+```
+---
