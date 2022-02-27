@@ -1,0 +1,19 @@
+--
+https://platform.stratascratch.com/coding/10319-monthly-percentage-difference/
+--
+```
+with t1 as (
+select distinct to_char(created_at, 'YYYY-MM') year_month, 
+        sum(value) monthly_rev
+from sf_transactions st
+group by to_char(created_at, 'YYYY-MM') 
+order by to_char(created_at, 'YYYY-MM')
+),
+t2 as (
+select year_month, monthly_rev as curr_rev,
+        lag(monthly_rev, 1) over(order by year_month) last_rev
+from t1
+        )
+select year_month, round(((curr_rev - last_rev)*100/last_rev),2)
+from t2 
+```
