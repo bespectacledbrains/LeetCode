@@ -1,0 +1,12 @@
+---
+# https://platform.stratascratch.com/coding/9864-find-the-last-five-records-of-the-dataset/
+---
+# Find the last five records of the dataset.
+---
+```
+select * from 
+(select * from worker order by worker_id desc limit 5) w
+order by worker_id
+;
+```
+---
