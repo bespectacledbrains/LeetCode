@@ -1,0 +1,13 @@
+---
+# https://platform.stratascratch.com/coding/9846-find-the-full-name-of-workers-whose-salaries-50000-and-100000/
+---
+# Find the full name of workers whose salaries >= 50000 and <= 100000
+# Output the worker's first name and last name in one column along with their salaries
+# Table: worker
+---
+```
+select concat(first_name, ' ', last_name) as Full_name, salary
+from worker
+where salary between 50000 and 100000;
+```
+---
