@@ -1,0 +1,14 @@
+---
+# https://leetcode.com/problems/project-employees-iii/
+---
+with emp_exp as (
+select p.project_id, e.employee_id, e.experience_years, 
+        rank() over(partition by project_id order by experience_years desc) r
+from project p
+    inner join employee e
+    using (employee_id)
+    )
+    select project_id, employee_id
+    from emp_exp
+    where r = 1
+---
