@@ -1,0 +1,6 @@
+--
+https://leetcode.com/problems/game-play-analysis-i/
+--
+select distinct player_id, 
+        min(event_date) over(partition by player_id order by event_date asc) as first_login
+from activity
