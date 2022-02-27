@@ -3,10 +3,20 @@
 ---
 # Find the last five records of the dataset.
 ---
+# First way
 ```
 select * from 
 (select * from worker order by worker_id desc limit 5) w
 order by worker_id
 ;
+```
+---
+# Second way
+```
+select * from 
+(select *, row_number() over(order by worker_id desc) r
+from worker) w
+where w.r <=5
+order by worker_id
 ```
 ---
