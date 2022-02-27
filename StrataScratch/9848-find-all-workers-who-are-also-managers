@@ -1,0 +1,12 @@
+---
+# https://platform.stratascratch.com/coding/9848-find-all-workers-who-are-also-managers
+---
+# Simple join and filter to find records of one table based on condition from another table
+---
+```
+select first_name, worker_title
+from worker w join title t
+on w.worker_id = t.worker_ref_id
+and worker_title = 'Manager';
+```
+---
