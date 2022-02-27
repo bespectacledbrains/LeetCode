@@ -1,0 +1,19 @@
+---
+# https://platform.stratascratch.com/coding/9607-the-most-expensive-products-per-category
+---
+# Find the most expensive products on Amazon for each product category. Output category and the price (as a number)
+---
+# first way
+```
+select distinct product_category, 
+        max(price) over(partition by product_category order by price desc)
+from innerwear_amazon_com;
+```
+---
+# second way
+```
+select product_category, max(price) as most_exp_product_price
+from innerwear_amazon_com
+group by product_category;
+```
+---
