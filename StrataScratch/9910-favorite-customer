@@ -1,0 +1,19 @@
+---
+# https://platform.stratascratch.com/coding/9910-favorite-customer/
+---
+/* 
+Find "favorite" customers based on the order count and the total cost of orders.
+A customer is considered as a favorite if he or she has placed more than 3 orders and with the total cost of orders more than $100.
+Output the customer's first name, city, number of orders, and total cost of orders.
+Tables: customers, orders
+*/
+---
+```
+select c.first_name, c.city, count(o.id) number_of_orders, 
+        sum(total_order_cost) total_cost_of_orders
+from customers c join orders o on c.id = o.cust_id
+group by c.first_name, c.city
+having  count(o.id) > 3
+and sum(total_order_cost) > 100
+```
+---
