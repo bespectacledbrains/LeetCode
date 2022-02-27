@@ -1,0 +1,18 @@
+---
+# https://platform.stratascratch.com/coding/9908-customer-orders-and-details/
+---
+/*
+Find the number of orders, the number of customers, and the total cost of orders for each city. 
+Only include cities that have made at least 5 orders and count all customers in each city even if they did not place an order.
+Output each calculation along with the corresponding city name.
+Tables: customers, orders
+*/
+---
+```
+select c.city, count(o.id), count(distinct c.id), sum(total_order_cost)
+from customers c
+left join orders o on c.id = o.cust_id
+group by c.city
+having count(o.id) > 5
+```
+---
