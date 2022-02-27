@@ -1,5 +1,5 @@
 ---
-# https://leetcode.com/problems/customer-placing-the-largest-number-of-orders/submissions/
+# https://leetcode.com/problems/customer-placing-the-largest-number-of-orders/
 # faster than 91.36% of MySQL online submissions
 # This solution incorporates the chances of having more than one customers with same number of largest orders by using ranking.
 # dense_rank allows for ranking in consecutive numbers, without skipping numbers in case of more than one place holders for a rank.
