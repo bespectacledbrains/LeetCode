@@ -1,0 +1,16 @@
+---
+# https://platform.stratascratch.com/coding/10090-find-the-percentage-of-shipable-orders
+---
+# Percentage shippable items given tables orders and customer details, and order is shippable if address is known
+---
+```
+with cte as (
+select o.id, c.address, case when c.address is not null then 1 
+                else 0 end as Is_Shippable_flag
+from orders o join customers c
+on o.cust_id = c.id
+)
+select 100*sum(Is_Shippable_flag)/count(*) as Percentage_Shippable_orders 
+from cte;
+```
+---
