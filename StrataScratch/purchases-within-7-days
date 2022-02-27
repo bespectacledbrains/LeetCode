@@ -1,0 +1,13 @@
+---
+# https://platform.stratascratch.com/coding/10322-finding-user-purchases/
+---
+```
+select distinct user_id
+from
+(select a.user_id
+from amazon_transactions a
+join amazon_transactions b
+on a.user_id = b.user_id
+where (abs(a.created_at - b.created_at) between 0 and 7)
+and a.id != b.id) t
+```
