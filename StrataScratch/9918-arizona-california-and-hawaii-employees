@@ -1,0 +1,42 @@
+---
+# https://platform.stratascratch.com/coding/9918-arizona-california-and-hawaii-employees/
+---
+/*
+Arizona, California, and Hawaii Employees
+Find employees from Arizona, California, and Hawaii while making sure to output all employees from each city. 
+Output column headers should be Arizona, California, and Hawaii. Data for all cities must be ordered on the first name.
+Assume unequal number of employees per city.
+*/
+---
+/* #1. This problem needed pivoting of the results for limited values of a table column (3 cities)
+       It can also be sone using crosstab function, however I couldn't test it in the given IDE
+   #2. If we dont make three separate CTEs here, then the query will work only if each city has equal number of employees
+*/
+---
+```
+with a as (
+select city, first_name, 
+        rank() over(partition by city order by first_name) r
+from employee where city = 'Arizona'
+),
+b as (
+select city, first_name, 
+        rank() over(partition by city order by first_name) r
+from employee where city = 'California'
+),
+c as (
+select city, first_name, 
+        rank() over(partition by city order by first_name) r
+from employee where city = 'Hawaii'
+)
+select  coalesce(a.first_name) as "Arizona", coalesce(b.first_name) as "California", coalesce(c.first_name) as "Hawaii"
+from  a 
+full join  b on a.r = b.r
+full join  c on b.r = c.r
+    and a.city = 'Arizona'
+    and b.city = 'California'
+    and c.city = 'Hawaii'
+    order by a.first_name, b.first_name, c.first_name
+   ;
+```
+---
