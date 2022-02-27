@@ -1,0 +1,19 @@
+---
+# https://leetcode.com/problems/customer-placing-the-largest-number-of-orders/submissions/
+# faster than 91.36% of MySQL online submissions
+# This solution incorporates the chances of having more than one customers with same number of largest orders by using ranking.
+# dense_rank allows for ranking in consecutive numbers, without skipping numbers in case of more than one place holders for a rank.
+# Note - as given in leetcode solution, only using limit 1 after ordering by count(order_id) desc after group by will yeild only 1 top-most record,
+# and if data has more than 1 customers placing largest orders, the result will be incorrect
+# P.S. Just saw the follow up question after writing above description! So, all good.
+
+---
+```
+select customer_number
+from (select customer_number, count(order_number) c, dense_rank() over(order by count(order_number) desc) r
+      from orders
+      group by customer_number
+      order by count(order_number) desc) o
+where r=1
+```
+---
