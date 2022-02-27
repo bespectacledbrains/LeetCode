@@ -1,0 +1,12 @@
+---
+# https://platform.stratascratch.com/coding/9861-find-the-number-of-employees-in-each-department
+---
+# Find the number of employees in each department. Output the department name along with the corresponding number of employees.
+# Table: worker
+---
+```
+select department, count(worker_id) number_of_employees
+from worker
+group by department;
+```
+---
