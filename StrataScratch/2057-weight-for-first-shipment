@@ -1,0 +1,32 @@
+---
+https://platform.stratascratch.com/coding/2057-weight-for-first-shipment/
+---
+Weight For First Shipment
+Write a query to find the weight for each shipment's earliest shipment date. Output the shipment id along with the weight.
+Table: amazon_shipment
+---
+# using cte 
+---
+```
+with temp as (
+select shipment_id, weight,
+        rank() over(partition by shipment_id order by shipment_date asc) r
+from amazon_shipment
+)
+select distinct shipment_id, weight from temp
+where r = 1
+order by shipment_id
+;
+```
+---
+# alternate solution
+---
+```
+select shipment_id, weight
+from 
+(select *, rank() over(partition by shipment_id order by shipment_date) r 
+from amazon_shipment
+order by shipment_id, shipment_date ) a
+where a.r = 1
+;
+```
