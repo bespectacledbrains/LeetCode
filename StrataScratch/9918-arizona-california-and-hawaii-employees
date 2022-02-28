@@ -40,3 +40,21 @@ full join  c on b.r = c.r
    ;
 ```
 ---
+```
+-- Assuming equal number of employees in each department
+with list as (
+select city, first_name, 
+        rank() over(partition by city order by first_name) r
+from employee where city in ('Arizona', 'California', 'Hawaii')
+)
+select distinct a.first_name as "Arizona", b.first_name as "California", c.first_name as "Hawaii"
+from list a 
+ join list b on a.r = b.r
+ join list c on b.r = c.r
+    and a.city = 'Arizona'
+    and b.city = 'California'
+    and c.city = 'Hawaii'
+    order by a.first_name, b.first_name, c.first_name
+    ;
+```
+---
